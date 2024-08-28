@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.admin import StackedInline
 from django.utils.html import format_html
 
-from apps.models import Category, ProductImage, Product
+from apps.models import Category, ProductImage, Product, Store
 
 
 @admin.register(Category)
@@ -29,3 +29,8 @@ class ProductAdmin(admin.ModelAdmin):
         if not obj.quantity:
             icon_url = 'https://img.icons8.com/?size=100&id=63688&format=png&color=000000'
         return format_html("<img src='{}' style='width: 30px' />", icon_url)
+
+
+@admin.register(Store)
+class StoreAdmin(admin.ModelAdmin):
+    pass

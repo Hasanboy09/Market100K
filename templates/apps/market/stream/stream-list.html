@@ -1,10 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'apps/profile/base.html' %}
 
-</body>
-</html>
+{% block body %}
+    <div class="page-wrapper">
+        <main class="page-content" style="position: relative;">
+            <div class="stream">
+                <div class="container">
+                    <div class="mantine-1q1idfv"></div>
+                    <h1>Mening havolalarim</h1>
+                    <div class="mantine-1q1idfv"></div>
+                    <div class="stream__cards"
+                         style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+                        {% for stream in streams %}
+                            <div class="stream-card" style="flex: 1 1 calc(33.333% - 20px); box-sizing: border-box;">
+                                <div class="stream-card__header">
+                                    <div class="mantine-Badge-root mantine-7io53s"
+                                         style="background-color: rgb(0, 0, 0);">
+                                        <span class="mantine-h9iq4m mantine-Badge-inner">100%</span></div>
+                                    <h2>{{ stream.name }}</h2>
+                                    <div class="icon">
+                                        <div class="right-bottom">
+                                            <div class="action__delete">
+                                                <a
+                                                        href="{% url 'stream-delete' stream.id %}"><i
+                                                        class="fas fa-trash"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="stream-card__body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label class="form-label" for="input">
+                                                <div>{{ products.name }}</div>
+                                            </label>
+                                            <input type="text" id="refLink"
+                                                   value="{{ request.headers.host }}/oqim/{{ stream.id }}" readonly
+                                                   class="ref_link form-control">
+                                            <p class="form__error"></p>
+                                        </div>
+                                        <div>
+                                            <div class="mantine-wadvlz">
+                                                <div class="form-group">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox">
+                                                        <label class="form-check-label" for="remember">sorovlarni
+                                                            hududsiz qabul qilish</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="mb-10" style="text-align: end;">{{ stream.created_at }}</p>
+                                    </form>
+                                </div>
+                                <div class="stream-card__footer bt pt-20 f-c-sb">
+                                    
+                                    <button class="copy_ref_bn btn btn-primary"
+                                            style="float:left; margin-right:9px; margin-top: 9px;"
+                                            onclick="copyToClipboard(event)">
+                                        Nusxa ko'chirish
+                                    </button>
+                                    <button type="button" class="btn btn-default"><i
+                                            class="fa-solid fa-file-import"></i></button>
+                                </div>
+                            </div>
+
+                        {% endfor %}
+                        <script>
+                            function copyToClipboard(event) {
+                                event.preventDefault(); // Prevent the default button behavior
+
+                                var copyText = document.getElementById("refLink");
+
+                                // Use the modern navigator.clipboard API
+                                navigator.clipboard.writeText(copyText.value).then(function () {
+                                    // Optionally, you can display a message to indicate that the text was copied
+                                    alert("Link nusxa ko'chirildi: " + copyText.value);
+                                }, function (err) {
+                                    console.error("Error copying text: ", err);
+                                });
+                            }
+                        </script>
+
+
+                    </div>
+                    <div class="pagination">
+                        <div class="display-records">
+                            <p>Ko'rsatilgan ma'lumotlar: 1-2 jami 2</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

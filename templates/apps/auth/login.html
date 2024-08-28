@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'apps/include_base/base.html' %}
 
-</body>
-</html>
+{% block body %}
+    <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 100vh; background-color: #FF0000;">
+        <div class="card shadow-lg" style="width: 100%; max-width: 400px;">
+            <form method="post">
+                {% csrf_token %}
+                <div class="card-body p-4">
+                    <h3 class="text-center mb-4">Kirish</h3>
+
+                    {% if messages_error %}
+                        <div class="alert alert-danger">
+                            {% for error_message in messages_error %}
+                                <p class="mb-0">{{ error_message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="mb-3">
+                        <label class="form-label" for="phone-mask">Telefon nomer</label>
+                        <input type="text" name="phone_number" id="phone-mask" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="split-login-password">Parol</label>
+                        <input class="form-control" name="password" id="split-login-password" type="password">
+                    </div>
+
+                    <div class="mb-3">
+                        <button class="btn btn-primary d-block w-100 mt-3" type="submit">
+                            Kirish
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

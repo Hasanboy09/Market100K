@@ -23,11 +23,14 @@
                     </div>
                 </div>
 
-                <form id="orderForm" data-price="157000" data-request="onOrder" data-request-flash=""
-                      data-request-success="
-                $(this).find(&quot;.needclear&quot;).val(&quot;&quot;);
-                fbq(&quot;track&quot;, &quot;Purchase&quot;, {currency: &quot;uzs&quot;, value: $(this).data(&quot;price&quot;) });
-              ">
+{#                <form id="orderForm"#}
+{#                      data-price="157000"#}
+{#                      data-request="onOrder"#}
+{#                      data-request-flash=""#}
+{#                      data-request-success="#}
+{#                $(this).find(&quot;.needclear&quot;).val(&quot;&quot;);#}
+{#                fbq(&quot;track&quot;, &quot;Purchase&quot;, {currency: &quot;uzs&quot;, value: $(this).data(&quot;price&quot;) });#}
+{#              ">#}
 
                     <div class="row">
                         <div class="col-md-6 mb-4">
@@ -37,6 +40,31 @@
                                 <div class="owl-stage-outer">
                                     <div class="owl-stage"
                                          style="transform: translate3d(-862px, 0px, 0px); transition: all; width: 3448px;">
+                                        <div class="owl-item cloned" style="width: 431px;">
+                                            <div class="item">
+                                                <img loading="lazy" class=" lazyloaded"
+                                                     src="https://100k.website.yandexcloud.net/resized/1000x1000/products/images/vwcIfBjeB1d64ojN8paZfGZDimu4b7Uini8uRlZI.jpg.webp"
+                                                     data-src="https://100k.website.yandexcloud.net/resized/1000x1000/products/images/vwcIfBjeB1d64ojN8paZfGZDimu4b7Uini8uRlZI.jpg.webp"
+                                                     alt="card">
+                                            </div>
+                                        </div>
+                                        <div class="owl-item cloned" style="width: 431px;">
+                                            <div class="item">
+                                                <img loading="lazy" class=" lazyloaded"
+                                                     src="https://100k.website.yandexcloud.net/resized/1000x1000/products/images/SRbBfHwz8l7qtOtLHtfsl5vaHFadOQs3SpbTxhCS.jpg.webp"
+                                                     data-src="https://100k.website.yandexcloud.net/resized/1000x1000/products/images/SRbBfHwz8l7qtOtLHtfsl5vaHFadOQs3SpbTxhCS.jpg.webp"
+                                                     alt="card">
+                                            </div>
+                                        </div>
+                                        <div class="owl-item active" style="width: 431px;">
+                                            <div class="item-video">
+                                                <video width="100%" controls="">
+                                                    <source src="{{ product.video.url }}"
+                                                            type="video/mp4">
+                                                    Sizning brovseringiz ushbu videoni oqiy olmaydi
+                                                </video>
+                                            </div>
+                                        </div>
                                         {% for image in product.images.all %}
                                             <div class="owl-item" style="width: 431px;">
                                                 <div class="item">
@@ -48,16 +76,6 @@
                                             </div>
 
                                         {% endfor %}
-
-                                        <div class="owl-item active" style="width: 431px;">
-                                            <div class="item-video">
-                                                <video width="100%" controls="">
-                                                    <source src="{{ product.video.url }}"
-                                                            type="video/mp4">
-                                                    Sizning brovseringiz ushbu videoni oqiy olmaydi
-                                                </video>
-                                            </div>
-                                        </div>
 
 
                                     </div>
@@ -100,11 +118,11 @@
                             </div>
                         </div>
 
-                        <div id="orderFormSection" class="col-md-6 pl-md-4 mb-4">
+                        <div class="col-md-6 pl-md-4 mb-4">
                             <div class="orderForm sk-form d-flex flex-column justify-content-between"
                                  style="min-height:100%;">
                                 <div>
-                                    <h2 class="h3 font-weight-bold mb-4"><a href="#orderFormSection"> Buyurtma
+                                    <h2 class="h3 font-weight-bold mb-4"><a href=""> Buyurtma
                                         berish</a></h2>
 
                                     <p class="mb-3"> Mahsulot narxi: <strong
@@ -118,59 +136,63 @@
 
                                     </div>
                                 </div>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="my-3">
+                                        <input type="hidden" name="product" value="{{ product.id }}">
+{#                                        <input type="hidden" name="stream_id" value="">#}
+{##}
+{#                                        <input type="hidden" name="product_item_id" value="2845">#}
 
-                                <div class="my-3">
-                                    <input type="hidden" name="product_id" value="2710">
-                                    <input type="hidden" name="stream_id" value="">
-
-                                    <input type="hidden" name="product_item_id" value="2845">
-
-                                    <div class="form-group">
-                                        <input class="form-control needclear" name="client_full_name"
-                                               placeholder="Ismingiz" type="text">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input class="my-phone-mask form-control needclear" name="customer_phone"
-                                               id="customer_phone" placeholder="Telefon raqamingiz" type="text">
-                                    </div>
-
-                                    <div id="partialCountryState">
                                         <div class="form-group">
-                                            <select required="" class="form-control" name="region_id">
-                                                <option value="" selected="selected">Hududni tanlang ⬇</option>
-                                                <option value="13">Toshkent shahri</option>
-                                                <option value="12">Andijon</option>
-                                                <option value="11">Buxoro</option>
-                                                <option value="1">Fargona</option>
-                                                <option value="10">Jizzax</option>
-                                                <option value="6">Namangan</option>
-                                                <option value="7">Navoiy</option>
-                                                <option value="8">Qashqadaryo</option>
-                                                <option value="9">Qoraqalpogiston</option>
-                                                <option value="5">Samarqand</option>
-                                                <option value="3">Sirdaryo</option>
-                                                <option value="4">Surxondaryo</option>
-                                                <option value="2">Toshkent viloyati</option>
-                                                <option value="14">Xorazm</option>
-                                            </select>
+                                            <input class="form-control needclear" name="full_name"
+                                                   placeholder="Ismingiz" type="text">
                                         </div>
-                                    </div>
-                                </div>
 
-                                <div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="text-center">
-                                                <button data-attach-loading="" type="submit" style="max-width: 100%"
-                                                        class="sk-btn sk-btn--primary sk-btn--block sk-btn--lg">
-                                                    Buyurtma berish
-                                                </button>
+                                        <div class="form-group">
+                                            <input class="my-phone-mask form-control needclear" name="phone_number"
+                                                   id="customer_phone" placeholder="Telefon raqamingiz" type="text">
+                                        </div>
+
+                                        <div >
+                                            <div class="form-group">
+                                                <select class="form-control" name="region">
+                                                    <option value="" selected="selected">Hududni tanlang ⬇</option>
+                                                    <option value="toshkent">Toshkent shahri</option>
+                                                    <option value="andijon">Andijon</option>
+                                                    <option value="buxoro">Buxoro</option>
+                                                    <option value="fargona">Fargona</option>
+                                                    <option value="jizzax">Jizzax</option>
+                                                    <option value="namangan">Namangan</option>
+                                                    <option value="navoiy">Navoiy</option>
+                                                    <option value="qashqadaryo">Qashqadaryo</option>
+                                                    <option value="qoraqalpogiston">Qoraqalpogiston</option>
+                                                    <option value="samarqand">Samarqand</option>
+                                                    <option value="sirdaryo">Sirdaryo</option>
+                                                    <option value="surxondaryo">Surxondaryo</option>
+                                                    <option value="toshkentviloyati">Toshkent viloyati</option>
+                                                    <option value="xorazm">Xorazm</option>
+                                                </select>
                                             </div>
                                         </div>
-
                                     </div>
-                                </div>
+                                    <div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="text-center">
+                                                    <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 20px;">
+                                                        <button class="btn btn-primary" type="submit">Buyurtma berish
+                                                        </button>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+
+
                             </div>
                         </div>
                     </div>
@@ -193,7 +215,8 @@
 
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="productDescription">
-                            <div>{{ product.description }}</div>
+                            <div>{{ product.description }}
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="productReviews">
                             <div class="row align-items-center">
@@ -344,6 +367,4 @@
         </style>
 
     </main>
-    
-    
 {% endblock %}

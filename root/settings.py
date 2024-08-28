@@ -18,8 +18,11 @@ SECRET_KEY = 'django-insecure-1!e@ehm0-#8uk8mg753)f%@9-_cso^h--tg=p=l!5@xdpa35hk
 DEBUG = True
 
 ALLOWED_HOSTS = []
+LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'home'
 
 INSTALLED_APPS = [
+    # 'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -99,3 +102,4 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

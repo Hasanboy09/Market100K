@@ -6,8 +6,8 @@
     <meta name="turbo-visit-control" content="disable"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <link rel="shortcut icon" href="https://100k.uz/themes/stock/assets/favicon/favicon.ico" type="image/png">
-    <link rel="stylesheet" href="https://100k.uz/themes/stock/assets/owlcarousel/owl.carousel.min.css"/>
-    <link rel="stylesheet" href="https://100k.uz/themes/stock/assets/owlcarousel/owl.theme.default.min.css"/>
+    <link rel="stylesheet" href="{% static 'apps/owl.carousel.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'apps/owl.theme.default.min.css' %}"/>
     <link rel="stylesheet" href="https://100k.uz/combine/59f82d61887ef6d210900fece577822f-1635082775"/>
     <link rel="stylesheet" href="https://100k.uz/combine/e5aee909518633f91997c51dc946c9b8-1688155915"/>
 
@@ -17,7 +17,7 @@
     <meta name="description"
           content="100k.uz - bu eng innavatsion goyalarni o&#039;z ichiga olgan internet do&#039;kon.">
 
-    <link rel="stylesheet" href="https://100k.uz/plugins/rainlab/debugbar/assets/css/debugbar.css"/>
+    <link rel="stylesheet" href="{% static 'apps/debugbar.css' %}"/>
 
     <!-- Meta Pixel Code -->
     <script>
@@ -104,16 +104,16 @@
 
                     <div class="dropdown-menu mt-3 dropdown-menu-right">
                         <a class="dropdown-item header_navbar_lang_menu_dropdown_item" style="color: inherit"
-                           href="/pages/contacts"> Aloqa uchun </a>
+                           href="{% url 'call-center' %}"> Aloqa uchun </a>
 
                         <a class="dropdown-item header_navbar_lang_menu_dropdown_item" style="color: inherit"
-                           href="/admin"> Profil </a>
+                           href="{% url 'dashboard' %}"> Profil </a>
 
                         <a class="dropdown-item header_navbar_lang_menu_dropdown_item" style="color: inherit"
-                           href="/admin"> Adminlar uchun </a>
+                           href="{% url 'dashboard' %}"> Adminlar uchun </a>
 
                         <a class="dropdown-item header_navbar_lang_menu_dropdown_item" style="color: inherit"
-                           href="/admin"> Sozlamalar </a>
+                           href="{% url 'dashboard' %}"> Sozlamalar </a>
                     </div>
                 </div>
             </div>
@@ -126,54 +126,51 @@
         <div class="row align-items-center siteHeader--height">
             <div class="col-auto col-logo">
                 <a href="/" class="header_navbar_brand_logo">
-                    <img src="{% static 'apps/img.png' %}" style="height: 30px; object-fit: cover; margin-top: -10px"
+                    <img src="{% static 'apps/100k.png' %}" style="height: 30px; object-fit: cover; margin-top: -10px"
                          alt="100k.uz">
                 </a>
             </div>
             <div class="d-none d-md-block col-sm-1"></div>
-            <div class="col col-search">
-                <form data-request="onSearch" data-request-flash
-                      data-request-update="'site/main-search-result': '#mainSearchResult'" class="siteSearch">
+            <form method="get">
+    <div class="col col-search">
+        <div class="input-group">
+            <input name="search" type="text" placeholder="Qidiruv..." autocomplete="off" class="form-control">
+            <button class="btn btn-primary search-button" type="submit" data-attach-loading>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 6.35 6.35">
+                    <g transform="translate(0 -290.65)">
+                        <path d="m2.894 291.16c-1.312 0-2.381 1.069-2.381 2.381 0 1.312 1.069 2.382 2.381 2.382.56 0 1.076-.196 1.483-.522l.992.991a.265.265 0 0 0 .375-.374l-.992-.992c.326-.408.523-.924.523-1.485 0-1.312-1.069-2.381-2.381-2.381zm0 .529c1.026 0 1.852.826 1.852 1.852s-.826 1.854-1.852 1.854-1.852-.828-1.852-1.854.826-1.852 1.852-1.852z" fill="#fff"/>
+                    </g>
+                </svg>
+            </button>
+        </div>
+        <div id="mainSearchResult" class="siteSearch--info"></div>
+    </div>
+</form>
+        
 
-                    <input name="search" type="text" placeholder="qidiruv..." autocomplete="off"
-                           data-request="onSearch" data-request-flash data-track-input="500"
-                           data-request-update="'site/main-search-result': '#mainSearchResult'">
-
-                    <button data-attach-loading>
-                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
-                             xmlns:svgjs="http://svgjs.com/svgjs" width="20" height="20" x="0" y="0"
-                             viewBox="0 0 6.3499999 6.3500002" style="enable-background:new 0 0 512 512"
-                             xml:space="preserve">
-            <g>
-                <g xmlns="http://www.w3.org/2000/svg" id="layer1" transform="translate(0 -290.65)">
-                    <path id="circle2017"
-                          d="m2.8944091 291.16099c-1.3119941 0-2.38073328 1.06874-2.38073328 2.38074 0 1.31199 1.06873918 2.3828 2.38073328 2.3828.5603925 0 1.0757805-.19638 1.4831137-.52245l.9916707.99115a.26516505.26516505 0 0 0 .375171-.37465l-.9916708-.99167c.3263411-.40796.5229654-.92414.5229654-1.48518 0-1.312-1.0692559-2.38074-2.38125-2.38074zm0 .52917c1.0260113 0 1.8515666.82556 1.8515666 1.85157s-.8255553 1.85363-1.8515666 1.85363-1.8515666-.82762-1.8515666-1.85363.8255553-1.85157 1.8515666-1.85157z"
-                          font-variant-ligatures="normal" font-variant-position="normal" font-variant-caps="normal"
-                          font-variant-numeric="normal" font-variant-alternates="normal" font-feature-settings="normal"
-                          text-indent="0" text-align="start" text-decoration-line="none" text-decoration-style="solid"
-                          text-decoration-color="rgb(0,0,0)" text-transform="none" text-orientation="mixed"
-                          white-space="normal" shape-padding="0" isolation="auto" mix-blend-mode="normal"
-                          solid-color="rgb(0,0,0)" solid-opacity="1" vector-effect="none"
-                          paint-order="stroke fill markers" fill="#ffffff"></path>
-                </g>
-            </g>
-        </svg>
-                    </button>
-                    <div id="mainSearchResult" class="siteSearch--info">
-                    </div>
-                </form>
-            </div>
             <div class="d-none d-md-block col-sm-1"></div>
             <div class="col-auto d-none d-md-block">
                 <!-- user -->
-                <div class="header_navbar_profile">
-                    <div class="d-flex align-items-center">
-                        <a href="/admin" class="d-inline-block p-2">
-                            <i class="fa fa-user mr-2"></i>
-                            <span>Mening kabinetim</span>
-                        </a>
+                {% if request.user.is_authenticated %}
+                    <div class="header_navbar_profile">
+                        <div class="d-flex align-items-center">
+                            <a href="{% url 'profile' %}" class="d-inline-block p-2">
+                                <i class="fa fa-user mr-2"></i>
+                                <span>Mening kabinetim</span>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                {% else %}
+                    <div class="header_navbar_profile">
+                        <div class="d-flex align-items-center">
+                            <a href="{% url 'login' %}" class="d-inline-block p-2">
+                                <i class="fa fa-user mr-2"></i>
+                                <span>Mening kabinetim</span>
+                            </a>
+                        </div>
+                    </div>
+
+                {% endif %}
                 <!-- /user -->
             </div>
         </div>
@@ -229,7 +226,7 @@
 
 
 {% block body %}
-	
+
 {% endblock %}
 
 <footer class="siteFooter mt-auto">
@@ -283,15 +280,15 @@
     </div>
 </footer>
 
-<script src="https://kit.fontawesome.com/43236b6dfa.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/imask"></script>
+<script src="{% static 'apps/43236b6dfa.js' %}" crossorigin="anonymous"></script>
+<script src="{% static 'apps/imask' %}"></script>
 
-<script src="https://100k.uz/themes/stock/assets/js/bundle.js"></script>
-<script src="https://100k.uz/themes/stock/assets/lazysizes/lazysizes.min.js"></script>
-<script src="https://100k.uz/themes/stock/assets/owlcarousel/owl.carousel.min.js"></script>
-<script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
-<script src="https://100k.uz/themes/stock/assets/js/custom.js"></script>
-<script src="/modules/system/assets/js/framework-extras.js"></script>
-<link rel="stylesheet" property="stylesheet" href="/modules/system/assets/css/framework-extras.css">
+<script src="{% static 'apps/bundle.js' %}"></script>
+<script src="{% static 'apps/lazysizes.min.js' %}"></script>
+<script src="{% static 'apps/owl.carousel.min.js' %}"></script>
+<script src="{% static 'apps/jquery.inputmask.bundle.js' %}"></script>
+<script src="{% static 'apps/custom.js' %}"></script>
+<script src="{% static 'apps/framework-extras.js' %}"></script>
+<link rel="stylesheet" property="stylesheet" href="{% static 'apps/framework-extras.css' %}">
 </body>
 </html>

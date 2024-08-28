@@ -3351,21 +3351,21 @@
                                     </svg>
                                 </div>
                                 <p>Dashboard</p><span> </span></a></li>
-                            <li><a href="{% url 'market' %}" aria-current="{% if request.path == 'admin1/market/' %}page{% endif %}" class="{% if request.path == '/market/' %}active{% endif %}">
+                            <li><a href="{% url 'market-list' %}" aria-current="{% if request.path == 'admin1/market/' %}page{% endif %}" class="{% if request.path == '/market/' %}active{% endif %}">
                                 <div class="dashboard-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                                         <path d="M531.6 103.8L474.3 13.1C469.2 5 460.1 0 450.4 0H93.6C83.9 0 74.8 5 69.7 13.1L12.3 103.8c-29.6 46.8-3.4 111.9 51.9 119.4c4 .5 8.1 .8 12.1 .8c26.1 0 49.3-11.4 65.2-29c15.9 17.6 39.1 29 65.2 29c26.1 0 49.3-11.4 65.2-29c15.9 17.6 39.1 29 65.2 29c26.2 0 49.3-11.4 65.2-29c16 17.6 39.1 29 65.2 29c4.1 0 8.1-.3 12.1-.8c55.5-7.4 81.8-72.5 52.1-119.4zM483.7 254.9l-.1 0c-5.3 .7-10.7 1.1-16.2 1.1c-12.4 0-24.3-1.9-35.4-5.3V384H112V250.6c-11.2 3.5-23.2 5.4-35.6 5.4c-5.5 0-11-.4-16.3-1.1l-.1 0c-4.1-.6-8.1-1.3-12-2.3V384v64c0 35.3 28.7 64 64 64H432c35.3 0 64-28.7 64-64V384 252.6c-4 1-8 1.8-12.3 2.3z"></path>
                                     </svg>
                                 </div>
                                 <p>Market</p><span> </span></a></li>
-                            <li><a href="{% url 'stream' %}" aria-current="{% if request.path == 'admin1/stream/' %}page{% endif %}" class="{% if request.path == '/stream/' %}active{% endif %}">
+                            <li><a href="{% url 'stream-list' %}" aria-current="{% if request.path == 'admin1/stream/' %}page{% endif %}" class="{% if request.path == '/stream/' %}active{% endif %}">
                                 <div class="dashboard-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
                                         <path d="M563.2 267.3c56.2-56.2 56.2-147.4 0-203.6S415.8 7.4 359.6 63.7L348.3 75l45.3 45.3 11.3-11.3c31.2-31.2 81.9-31.2 113.1 0s31.2 81.9 0 113.1L404.8 335.2c-31.2 31.2-81.9 31.2-113.1 0c-25.6-25.6-30.3-64.3-13.8-94.6c1.8-3.4 3.9-6.7 6.3-9.8l-51.2-38.4c-4.3 5.7-8.1 11.6-11.4 17.8c-29.5 54.6-21.3 124.2 24.9 170.3c56.2 56.2 147.4 56.2 203.6 0L563.2 267.3zM42.8 244.7c-56.2 56.2-56.2 147.4 0 203.6s147.4 56.2 203.6 0L257.7 437l-45.3-45.3-11.3 11.3c-31.2 31.2-81.9 31.2-113.1 0s-31.2-81.9 0-113.1L201.2 176.8c31.2-31.2 81.9-31.2 113.1 0c25.6 25.6 30.3 64.3 13.8 94.6c-1.8 3.4-3.9 6.7-6.3 9.8l51.2 38.4c4.3-5.7 8.1-11.6 11.4-17.8c29.5-54.6 21.3-124.2-24.9-170.3c-56.2-56.2-147.4-56.2-203.6 0L42.8 244.7z"></path>
                                     </svg>
                                 </div>
                                 <p>Oqim</p><span> </span></a></li>
-                            <li><a href="{% url 'statistics' %}" aria-current="{% if request.path == 'admin1/statistics/' %}page{% endif %}" class="{% if request.path == '/statistics/' %}active{% endif %}">
+                            <li><a href="{% url 'stream-statistic' %}" aria-current="{% if request.path == 'admin1/statistics/' %}page{% endif %}" class="{% if request.path == '/statistics/' %}active{% endif %}">
                                 <div class="dashboard-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                         <path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zM439 279c15.1 15.1 41 4.4 41-17V152c0-13.3-10.7-24-24-24H345.9c-21.4 0-32.1 25.9-17 41l32.4 32.4L304 258.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0l-80 80c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L208 253.3l73.4 73.4c12.5 12.5 32.8 12.5 45.3 0l80-80L439 279z"></path>
@@ -3414,7 +3414,7 @@
                                 </svg>
                             </div>
                             <p>Dashboard</p></a></li>
-                        <li><a class="" href="/market">
+                        <li><a class="" href="{% url 'market-list' %}">
                             <div class="dashboard-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                                     <path d="M531.6 103.8L474.3 13.1C469.2 5 460.1 0 450.4 0H93.6C83.9 0 74.8 5 69.7 13.1L12.3 103.8c-29.6 46.8-3.4 111.9 51.9 119.4c4 .5 8.1 .8 12.1 .8c26.1 0 49.3-11.4 65.2-29c15.9 17.6 39.1 29 65.2 29c26.1 0 49.3-11.4 65.2-29c15.9 17.6 39.1 29 65.2 29c26.2 0 49.3-11.4 65.2-29c16 17.6 39.1 29 65.2 29c4.1 0 8.1-.3 12.1-.8c55.5-7.4 81.8-72.5 52.1-119.4zM483.7 254.9l-.1 0c-5.3 .7-10.7 1.1-16.2 1.1c-12.4 0-24.3-1.9-35.4-5.3V384H112V250.6c-11.2 3.5-23.2 5.4-35.6 5.4c-5.5 0-11-.4-16.3-1.1l-.1 0c-4.1-.6-8.1-1.3-12-2.3V384v64c0 35.3 28.7 64 64 64H432c35.3 0 64-28.7 64-64V384 252.6c-4 1-8 1.8-12.3 2.3z"></path>

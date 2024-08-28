@@ -2,7 +2,7 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
 from django.db.models import CharField, ForeignKey, CASCADE, Model, DateTimeField, SlugField, ImageField, FloatField, \
-    IntegerField, TextField, FileField
+    IntegerField, TextField, FileField, TextChoices
 from django.utils.text import slugify
 from django_resized import ResizedImageField
 
@@ -25,16 +25,19 @@ class CustomUserManager(BaseUserManager):
 
 
 class User(AbstractUser):
-    full_name = CharField(max_length=25)
+    class Role(TextChoices):
+        ADMIN = "admin", 'Admin'
+        OPERATOR = "operator", 'Operator'
+        MANAGER = "manager", 'Manager'
+        DRIVER = "driver", 'Driver'
+        USER = "user", 'User'
+
+    username = None
+    USERNAME_FIELD = 'phone_number'
+    REQUIRED_FIELDS = []
+    objects = CustomUserManager()
+    role = CharField(max_length=50, choices=Role.choices, default=Role.USER)
     phone_number = CharField(max_length=12, unique=True)
-    role = CharField(max_length=12, unique=True)
-
-
-class Region(Model):
-    name = CharField(max_length=255, unique=True)
-
-    def __str__(self):
-        return self.name
 
 
 class BaseModel(Model):
@@ -81,6 +84,9 @@ class Product(BaseModel, BaseModelSlug):
                       validators=[
                           FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])])
     store = ForeignKey('apps.Store', on_delete=CASCADE, related_name='products')
+    payment = FloatField(default=25000)
+    seller = CharField(max_length=40)
+    count = IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -92,24 +98,57 @@ class ProductImage(Model):
 
 
 class Order(BaseModel):
+    class StatusType(TextChoices):
+        NEW = "new", 'New'
+        READY = "ready", 'Ready'
+        DELIVER = "deliver", 'Deliver'
+        DELIVERED = "delivered", 'Delivered'
+        CANT_PHONE = "cant_phone", 'Cant_phone'
+        CANCELED = "canceled", 'Canceled'
+        ARCHIVED = 'archived', 'Archived'
+
+    class Region(TextChoices):
+        ANDIJON = "andijon", "Andijon"
+        BUXORO = "buxoro", "Buxoro"
+        FARGONA = "fargona", "Farg'ona"
+        JIZZAX = "jizzax", "Jizzax"
+        XORAZM = "xorazm", "Xorazm"
+        NAMANGAN = "namangan", "Namangan"
+        NAVOIY = "navoiy", "Navoiy"
+        QASHQADARYO = "qashqadaryo", "Qashqadaryo"
+        QORAQALPOGISTON = "qoraqalpogiston", "Qoraqalpog'iston"
+        SAMARQAND = "samarqand", "Samarqand"
+        SIRDARYO = "sirdaryo", "Sirdaryo"
+        SURXONDARYO = "surxondaryo", "Surxondaryo"
+        TOSHKENTVILOYATI = "toshkentviloyati", "Toshkentviloyati"
+        TOSHKENT = "toshkent", "Toshkent"
+
     user = ForeignKey('apps.User', CASCADE, related_name='orders')
     product = ForeignKey('apps.Product', CASCADE, related_name='orders')
+    stream = ForeignKey('apps.Stream', CASCADE, related_name='orders', null=True)
     phone_number = CharField(max_length=25)
     full_name = CharField(max_length=255)
+    region = CharField(max_length=30, choices=Region.choices)
+    status = CharField(max_length=50, choices=StatusType.choices, default=StatusType.NEW)
 
 
 class Store(BaseModel):
     owner = ForeignKey('apps.User', on_delete=CASCADE, related_name='stores')
     image = ImageField(upload_to='static/images/', null=True, blank=True)
 
-    def __str__(self):
-        return self.image
-
 
 class Comment(BaseModel):
     text = CharField(max_length=255, null=True, blank=True)
-    user = ForeignKey(User, on_delete=CASCADE)
-    product = ForeignKey('apps.Product', on_delete=CASCADE,related_name='comments')
+    user = ForeignKey('apps.User', on_delete=CASCADE)
+    product = ForeignKey('apps.Product', on_delete=CASCADE, related_name='comments')
 
     def __str__(self):
         return self.text
+
+
+class Stream(BaseModel):
+    name = CharField(max_length=255)
+    discount = FloatField()
+    count = IntegerField(default=0)
+    product = ForeignKey('apps.Product', on_delete=CASCADE, related_name='streams')
+    owner = ForeignKey('apps.User', on_delete=CASCADE, related_name='streams')

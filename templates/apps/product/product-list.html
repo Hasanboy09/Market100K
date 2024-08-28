@@ -7,23 +7,17 @@
             <div class="container border-bottom-4">
                 <div class="header_tab_menu">
                     <div class="header_menu" style="overflow: auto">
-                        <a data-request="onFilter" data-request-update="'product/list': '#productsList'"
-                           href="{% url 'product-list' %}"
-                           data-request-data="'category_id': '' "
-                           data-request-success="$(this).parent().find('.btn').removeClass('active'); $(this).addClass('active');"
+                        <a href="{% url 'product-list' %}"
                            class="btn btn-default {% if not request.GET.category %} active {% endif %}"> Barchasi
-
                         </a>
                         {% for category in categories %}
-                            <a data-request="onFilter" data-request-update="'product/list': '#productsList'"
-                               href="{% url 'product-list' %}?category={{ category.slug }}"
-                               data-request-data="'category_id': '9245' "
-                               data-request-success="$(this).parent().find('.btn').removeClass('active'); $(this).addClass('active');"
-                               class="btn btn-default active {% if request.GET.category and request.GET.category == category.slug %} active {% endif %} "> {{ category.name }} </a>
+                            <a
+                                    href="{% url 'product-list' %}?category={{ category.slug }}"
+                                    class="btn btn-default {% if request.GET.category and request.GET.category == category.slug %} active {% endif %}">
+                                {{ category.name }}
+                            </a>
                         {% endfor %}
-
                     </div>
-
                 </div>
 
                 <style>
@@ -58,7 +52,8 @@
                                     </a>
 
                                     <div class="content_grid_card_price">
-                                        <p>{{ product.price|floatformat:"0"|intcomma  }} so'm</p> <!-- Mahsulot narxi shu yerda kiritilgan -->
+                                        <p>{{ product.price|floatformat:"0"|intcomma }} so'm</p>
+                                        <!-- Mahsulot narxi shu yerda kiritilgan -->
                                     </div>
                                 </div>
                             </div>
